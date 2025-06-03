@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Buku Perpustakaan</title>
+</head>
+<body>
+
+<?php 
+include "koneksi.php";
+
+// Tampilkan semua data jika belum mencari
+if (!isset($_POST['keyword'])) {
+    $hasil = mysqli_query($connection, "SELECT * FROM data_buku");
+
+    echo "<h2>Data Buku</h2>";
+    while ($data = mysqli_fetch_array($hasil)) {
+        echo "Judul: " . $data['judul_buku'] . "<br>";
+        echo "Penulis: " . $data['penulis_buku'] . "<br>";
+        echo "Tahun Terbit: " . $data['tahun_terbit'] . "<br><br>";
+    }
+} else {
+    include "cari.php";
+}
+?>
+
+<h2>Cari Buku</h2>
+<form method="post" action="">
+    <input type="text" name="keyword" placeholder="Masukkan judul buku..." required>
+    <input type="submit" value="Cari">
+    <input type="reset" value="Reset" onclick="window.location='index.php'">
+</form>
+
+<h2>Tambah Buku</h2>
+<form action="tambah.php" method="post">
+    <label>Judul Buku:</label><br>
+    <input type="text" name="judul_buku" required><br>
+
+    <label>Penulis:</label><br>
+    <input type="text" name="penulis_buku" required><br>
+
+    <label>Tahun Terbit:</label><br>
+    <input type="number" name="tahun_terbit" required><br><br>
+
+    <input type="submit" value="Tambah Buku">
+    <input type="reset" value="Reset">
+</form>
+
+</body>
+</html>
