@@ -1,0 +1,6 @@
+CREATE TABLE data_buku (
+    id_buku INT AUTO_INCREMENT PRIMARY KEY,
+    judul_buku VARCHAR(100),
+    penulis_buku VARCHAR(100),
+    tahun_terbit INT
+);
