@@ -1,0 +1,17 @@
+<?php
+include "koneksi.php";
+
+$judul = $_POST['judul_buku'];
+$penulis = $_POST['penulis_buku'];
+$tahun = $_POST['tahun_terbit'];
+
+$query = "INSERT INTO data_buku (judul_buku, penulis_buku, tahun_terbit)
+          VALUES ('$judul', '$penulis', '$tahun')";
+
+if (mysqli_query($connection, $query)) {
+    echo "Data berhasil ditambahkan.<br>";
+    echo "<a href='index.php'>Kembali ke halaman utama</a>";
+} else {
+    echo "Gagal menambahkan data: " . mysqli_error($connection);
+}
+?>
